@@ -1,14 +1,18 @@
 import { Menu, Transition } from '@headlessui/react'
 import { useState } from 'react'
+import { IBlogData } from '../interface'
 
 import BlogCard from "./BlogCard"
 
-const Section = ({ tag }: { tag: string }) => {
+const Section = ({ tag, blogs }: { tag: string, blogs: IBlogData[] }) => {
   const [isActive, setIsActive] = useState(false)
+  const filteredBlogs = blogs.filter(blog => blog.tags.includes(tag.toLowerCase()))
+
+
   return (
     <>
       <Menu>
-        <Menu.Button onClick={() => setIsActive(!isActive)}>{tag}</Menu.Button>
+        <Menu.Button onClick={() => setIsActive(!isActive)} className="px-3 pb-2">{tag}</Menu.Button>
         <Transition
           as='div'
           show={isActive}
@@ -19,15 +23,16 @@ const Section = ({ tag }: { tag: string }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className='flex gap-4 overflow-x-scroll scroll-smooth px-2'>
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
-            <BlogCard />
+          <div className='flex px-4 gap-3 h-[50vh] overflow-x-scroll scroll-smooth'>
+            {filteredBlogs.map(blog => (
+              <div className='relative border flex flex-col min-w-[30vw] px-4 pt-3'>
+                <h1 className='text-xl font-semibold mb-2 min-h-[4rem] text-center text-ali'>{blog.title}</h1>
+                  <p>{blog.body}</p>
+              </div>
+            ))}
           </div>
         </Transition>
+
       </Menu>
     </>
   )

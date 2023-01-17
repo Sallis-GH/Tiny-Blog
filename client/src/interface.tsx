@@ -1,6 +1,6 @@
 export interface IBlogData {
-  id: number
+  id: number,
   body: string,
-  tags: {0: string, 1: string, 2: string}
+  tags: string[],
   title: string
 }

@@ -7,13 +7,6 @@ import Section from './components/Section';
 
 function App() {
   const [blogs, setBlogs] = useState<IBlogData[]>([])
-  const tags: string[] = [
-    "history",
-    "magical",
-    "fiction",
-    "crime",
-    "classic"
-  ]
 
   useEffect(() => {
     fetch('https://dummyjson.com/posts')
@@ -22,7 +15,7 @@ function App() {
         setBlogs(data.posts.map((ele: IBlogData) => ({
           id: ele.id,
           body: ele.body,
-          tags: ele.tags,
+          tags: Object.values(ele.tags),
           title: ele.title
         })))
       });
@@ -32,8 +25,12 @@ function App() {
   return (
     <>
       <Header />
-      <main className='flex flex-col min-h-footer'> 
-        <Section tag='History'/>
+      <main className='flex flex-col min-h-footer'>
+        <Section tag='History' blogs={blogs} />
+        <Section tag='Magical' blogs={blogs} />
+        <Section tag='Fiction' blogs={blogs} />
+        <Section tag='Crime' blogs={blogs} />
+        <Section tag='Classic' blogs={blogs} />
       </main>
       <Footer />
     </>
