@@ -32,6 +32,8 @@ function App() {
         <Section tag='Crime' blogs={blogs} />
         <Section tag='Classic' blogs={blogs} />
       </main>
+
+
       <Footer />
     </>
   );

@@ -12,9 +12,9 @@ const Section = ({ tag, blogs }: { tag: string, blogs: IBlogData[] }) => {
   return (
     <>
       <Menu>
-        <Menu.Button onClick={() => setIsActive(!isActive)} className="px-3 pb-2">{tag}</Menu.Button>
+        <Menu.Button onClick={() => setIsActive(!isActive)} className="px-3 pb-2 text-4xl font-bold">{tag}</Menu.Button>
         <Transition
-          as='div'
+          as='article'
           show={isActive}
           enter="transition-opacity duration-75"
           enterFrom="opacity-0"
@@ -23,11 +23,14 @@ const Section = ({ tag, blogs }: { tag: string, blogs: IBlogData[] }) => {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className='flex px-4 gap-3 h-[50vh] overflow-x-scroll scroll-smooth'>
+
+          <div className='flex px-4 gap-3 h-[50vh] overflow-x-scroll scroll-smooth mt-1 mb-4'>
             {filteredBlogs.map(blog => (
-              <div className='relative border flex flex-col min-w-[30vw] px-4 pt-3'>
-                <h1 className='text-xl font-semibold mb-2 min-h-[4rem] text-center text-ali'>{blog.title}</h1>
-                  <p>{blog.body}</p>
+              <div className='relative border-4 flex flex-col min-w-[30rem] px-4 pt-3 pb-2 shadow-xl bg-gray-700 border-gray-800'>
+                <div className='overflow-x-scroll w-full'>
+                  <h1 className='text-xl font-semibold mb-2 min-h-[4rem] text-center text-ali'>{blog.title}</h1>
+                </div>
+                <p className='w-full'>{blog.body}</p>
               </div>
             ))}
           </div>
@@ -39,9 +42,3 @@ const Section = ({ tag, blogs }: { tag: string, blogs: IBlogData[] }) => {
 }
 
 export default Section
-  // <div className="mx-2 border-2 border-black p-2 text-3xl cursor-pointer transition-[height] ease-in duration-500">
-  //   <div onClick={() => setIsActive(!isActive)} >
-  //     <p>{tag}</p>
-  //   </div>
-  //   {isActive && <BlogCard />}
-  // </div>
