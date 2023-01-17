@@ -1,7 +1,6 @@
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'tw-elements';
 import './index.css'
 
 const root = ReactDOM.createRoot(
