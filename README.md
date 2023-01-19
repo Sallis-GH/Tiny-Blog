@@ -13,3 +13,4 @@ A simple program to display "Blog posts" based on tags.
 React
 Typescript
 Tailwind
+Headless UI
